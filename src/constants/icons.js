@@ -1,0 +1,16 @@
+const tick = require('../assets/icons/tick.png')
+const rightArrow = require('../assets/icons/right-arrow.png')
+const exit = require('../assets/icons/exit.png')
+const home = require('../assets/icons/home.png')
+const notification = require('../assets/icons/notification.png')
+const help = require('../assets/icons/help.png')
+const media = require('../assets/icons/media.png')
+const share = require('../assets/icons/share.png')
+const facebook = require('../assets/icons/facebook.png')
+const model = require('../assets/icons/model.png')
+const twitter = require('../assets/icons/twitter.png')
+const youtube = require('../assets/icons/youtube.png')
+const settings = require('../assets/icons/setting.png')
+const info = require('../assets/icons/info.png')
+
+export default {tick, rightArrow, exit, home, notification, help, media, share, facebook, model, twitter,info, youtube, settings}
