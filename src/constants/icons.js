@@ -12,5 +12,11 @@ const twitter = require('../assets/icons/twitter.png')
 const youtube = require('../assets/icons/youtube.png')
 const settings = require('../assets/icons/setting.png')
 const info = require('../assets/icons/info.png')
+const linkedin = require('../assets/icons/linkedin.png');
+const www = require('../assets/icons/www.png')
+const social = require('../assets/icons/social.png')
+const contact = require('../assets/icons/contact-mail.png')
+const review = require('../assets/icons/review.png')
+const licence = require('../assets/icons/licence.png')
 
-export default {tick, rightArrow, exit, home, notification, help, media, share, facebook, model, twitter,info, youtube, settings}
+export default {tick, rightArrow, exit, home, notification, help,review, media,licence, contact,share, social,www,facebook, model, twitter,info, youtube,linkedin, settings}

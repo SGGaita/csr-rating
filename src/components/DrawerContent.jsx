@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, Share, BackHandler } from 'react-native'
+import { Modal, StyleSheet, Text, View, Image, TouchableOpacity, Share, BackHandler } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer'
 import { Drawer } from 'react-native-paper'
@@ -11,14 +11,24 @@ import LinearGradient from 'react-native-linear-gradient';
 
 
 export const DrawerContent = (props) => {
+    const [isVisible, setIsVisible] = useState(false);
 
     const [url, setUrl] = useState('https://www.google.com/');
 
+
+    const handleCancel = () => {
+        setIsVisible(false);
+      };
+    
+      const handleAccept = () => {
+        // Logout the user here
+        setIsVisible(false);
+      };
+
     const shareLink = async () => {
         await Share.share({
-            message: `I came across CSR Rate Your Company| ${url}`,
+            message: `Check out CSR Rate Your Company| ${url}`,
             url,
-            title:"CSR Rating"
         });
     };
 
@@ -38,6 +48,28 @@ export const DrawerContent = (props) => {
     }, []);
 
     const navigation = useNavigation();
+
+    const logoutModal = ()=>{
+        return(
+
+            <Modal
+      visible={isVisible}
+      animationType="slide"
+      onRequestClose={handleCancel}
+    >
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Are you sure you want to log out?</Text>
+        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+          <Button title="Cancel" onPress={handleCancel} />
+          <Button title="Accept" onPress={handleAccept} />
+        </View>
+      </View>
+    </Modal>
+        )
+        
+    } 
+
+
     return (
         <View style={{ flex: 1, backgroundColor:'#1c53b3' }}>
             <DrawerContentScrollView {...props}>
@@ -56,7 +88,7 @@ export const DrawerContent = (props) => {
                         <View style={{padding:15}}>
                             <Text style={{color:'white', ...FONTS.h3}}>Tools</Text>
                         </View>
-                         <DrawerItem
+                         {/* <DrawerItem
                             icon={(color, size) => (
                                 <Image
                                     source={icons.settings}
@@ -78,7 +110,7 @@ export const DrawerContent = (props) => {
                             )}
                             label={({ focused, color }) => <Text style={{ color:'white',...FONTS.h4 }}>Help and Support</Text>}
                             onPress={() => { }}
-                        />
+                        /> */}
 
                         <DrawerItem
                             icon={(color, size) => (
@@ -100,7 +132,7 @@ export const DrawerContent = (props) => {
                                 />
                             )}
                             label={({ focused, color }) => <Text style={{ color:'white' ,...FONTS.h4 }}>About</Text>}
-                            onPress={() => { }}
+                            onPress={() => { navigation.navigate('About')}}
                         />
 
 
@@ -116,21 +148,6 @@ export const DrawerContent = (props) => {
             <View style={styles.bottomDrawerSection}
 
             >
-                {/* <View style={styles.socialMediaContainer}>
-                    <Text style={{ ...FONTS.h3, fontWeight: 700, marginBottom: 10 }}>Follow Us</Text>
-                    <View style={{ flex: 1, flexDirection: 'row', }}>
-                        <TouchableOpacity style={{ paddingVertical: 5, paddingRightl:10 }}>
-                            <Image source={icons.facebook} resizeMode='contain' style={{ tintColor: 'grey', width: 20, height: 20 }} />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={{ paddingVertical: 5, paddingHorizontal:10 }}>
-                            <Image source={icons.twitter} resizeMode='contain' style={{ tintColor: 'grey', width: 20, height: 20 }} />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ paddingVertical: 5, paddingHorizontal:10 }}>
-                            <Image source={icons.youtube} resizeMode='contain' style={{ tintColor: 'grey', width: 20, height: 20 }} />
-                        </TouchableOpacity>
-                    </View>
-                </View> */}
 
                <TouchableOpacity
                onPress={backAction} 

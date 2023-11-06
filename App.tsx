@@ -1,7 +1,7 @@
 
 import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
-import { OnboardingScreen, HomeScreen } from './src/screens';
+import { OnboardingScreen, HomeScreen, AboutScreen } from './src/screens';
 import { NavigationContainer } from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -25,6 +25,7 @@ const App = () => {
     screenOptions={{
       drawerActiveBackgroundColor:'#1c53b3'
     }}
+    initialRouteName='About'
     >
       <Drawer.Screen name="Onboarding" options={{headerShown:false, swipeEnabled:false, drawerItemStyle: { height: 0 }}} component={OnboardingScreen}/>
       <Drawer.Screen name="Rate your company" component={HomeScreen}
@@ -63,6 +64,7 @@ const App = () => {
         drawerLabelStyle:{color:'white' ,...FONTS.h4}
       }}
       />
+       <Drawer.Screen name="About" options={{ drawerItemStyle: { height: 0 }}} component={AboutScreen}/>
     </Drawer.Navigator>
   </NavigationContainer>;
 }
