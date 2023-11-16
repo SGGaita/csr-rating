@@ -13,7 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 export const DrawerContent = (props) => {
     const [isVisible, setIsVisible] = useState(false);
 
-    const [url, setUrl] = useState('https://www.google.com/');
+    const [url, setUrl] = useState('https://play.google.com/store/apps/details?id=com.csrfi.csr.csr');
 
 
     const handleCancel = () => {

@@ -4,7 +4,7 @@ import { WebView } from 'react-native-webview';
 
 const HopkinsModelScreen = () => {
     return (
-        <WebView source={{ uri: 'https://club.csrfi.com/hopkins-csr-model/' }} style={{ flex: 1 }} />
+        <WebView source={{ uri: 'https://www.csrfi.com/hopkinscsrmodel' }} style={{ flex: 1 }} />
       )
 }
 

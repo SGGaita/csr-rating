@@ -4,7 +4,7 @@ import { WebView } from 'react-native-webview';
 
 const MediaScreen = () => {
   return (
-    <WebView source={{ uri: 'https://club.csrfi.com/media-and-publication/' }} style={{ flex: 1 }} />
+    <WebView source={{ uri: 'https://www.csrfi.com/publications' }} style={{ flex: 1 }} />
   )
 }
 

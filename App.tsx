@@ -25,8 +25,7 @@ const App = () => {
     screenOptions={{
       drawerActiveBackgroundColor:'#1c53b3'
     }}
-    initialRouteName='About'
-    >
+    initialRouteName='Onboarding'>
       <Drawer.Screen name="Onboarding" options={{headerShown:false, swipeEnabled:false, drawerItemStyle: { height: 0 }}} component={OnboardingScreen}/>
       <Drawer.Screen name="Rate your company" component={HomeScreen}
       options={{
