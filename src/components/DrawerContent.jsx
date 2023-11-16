@@ -151,7 +151,14 @@ export const DrawerContent = (props) => {
 
                <TouchableOpacity
                onPress={backAction} 
-               style={{backgroundColor:'white', margin:10, paddingVertical:15,elevation:2,borderRadius:5, flexDirection:'row', alignItems:'center', justifyContent:'center'}}
+               style={{backgroundColor:'white', 
+               margin:10, 
+               paddingVertical:15,
+               elevation:2,
+               borderRadius:5, 
+               flexDirection:'row', 
+               alignItems:'center', 
+               justifyContent:'center'}}
                >
                 <Image resizeMode='contain' style={{width:20, height: 20, paddingHorizontal:20 }} source={icons.exit}/>
                 <Text style={{...FONTS.h3}}>Sign Out</Text>
