@@ -138,15 +138,7 @@ export const AboutScreen = () => {
               Contact us
             </Text>
             <View style={{ marginTop: 2 }}>
-              <View style={{ flexDirection: 'row' }}>
              
-                <Text style={{ ...FONTS.h4 }}>Telephone:</Text>
-                <TouchableOpacity
-                  onPress={() => handleSocial('telephone')}
-                >
-                <Text style={{ ...FONTS.h4, color: 'grey' }}> +61 89647 2156</Text>
-                </TouchableOpacity>
-              </View>
               <View style={{ flexDirection: 'row' }}>
                 <Text style={{ ...FONTS.h4 }}>Email:</Text>
                 <TouchableOpacity

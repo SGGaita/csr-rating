@@ -3,12 +3,11 @@ import React from 'react'
 import { FONTS, SIZES } from '../constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectScore } from '../redux/rateSlice'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import { useNavigation } from '@react-navigation/native'
+
 
 const ScoreComponent = () => {
     const score = useSelector(selectScore)
-    const navigation = useNavigation()
+   
 
 
     const chart = [
@@ -91,13 +90,6 @@ const ScoreComponent = () => {
                     </Text>
                 </View>
 
-                <View>
-                    <TouchableOpacity style={styles.submitButton}
-                        onPress={() => navigation.navigate('Rate your company')}
-                    >
-                        <Text style={{ color: 'white', ...FONTS.h3 }}>Rate again</Text>
-                    </TouchableOpacity>
-                </View>
             </View>
 
         </View>
@@ -128,17 +120,7 @@ const styles = StyleSheet.create({
         //alignI:'flex-start'
 
     },
-    submitButton: {
-        backgroundColor: '#1c53b3',
-        marginHorizontal: SIZES.padding * 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: SIZES.padding * 2,
-        marginBottom: 30,
-        borderRadius: 5,
-        elevation: 2,
-
-    }
+   
 
 
 })

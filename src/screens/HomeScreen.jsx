@@ -1,6 +1,7 @@
 import { View, Text, ActivityIndicator } from 'react-native'
-import React, { useState } from 'react'
-import { WebView } from 'react-native-webview';
+import React, { useState, useEffect } from 'react'
+
+
 import { COLORS, SIZES } from '../constants';
 import { RateFormComponent } from '../components';
 
@@ -13,6 +14,9 @@ export const HomeScreen = () => {
   const showSpinner = () => {
     setVisible(true);
   };
+
+
+  
 
   return (
     <View style={{ flex: 1, padding:SIZES.padding}}>

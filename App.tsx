@@ -60,7 +60,7 @@ const App = () => {
           }}
 
         />
-        <Drawer.Screen name="Media" component={MediaScreen}
+        {/* <Drawer.Screen name="Media" component={MediaScreen}
           options={{
 
             drawerIcon: () => (<Image
@@ -82,7 +82,7 @@ const App = () => {
             title: "Hopkins Model",
             drawerLabelStyle: { color: 'white', ...FONTS.h4 }
           }}
-        />
+        /> */}
         <Drawer.Screen name="About" options={{ drawerItemStyle: { height: 0 } }} component={AboutScreen} />
       </Drawer.Navigator>
     </NavigationContainer>

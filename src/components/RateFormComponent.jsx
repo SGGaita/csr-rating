@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, ActivityIndicator } from 'react-native';
 import { FONTS, SIZES } from '../constants';
 import { RadioButton } from 'react-native-paper';
 import { rateFields } from '../utils/rateFormFields';
@@ -7,11 +7,17 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux'
 import { setScore } from '../redux/rateSlice';
 
+
 export const RateFormComponent = () => {
   const [formFields, setFormFields] = useState(rateFields);
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const dispatch = useDispatch()
   const navigation = useNavigation()
+
+  useEffect(() => {
+    setIsSubmitting(false)
+  }, [])
 
   const handleChange = (field, value) => {
     const updatedFormFields = formFields.map((formField) => {
@@ -29,12 +35,14 @@ export const RateFormComponent = () => {
   };
 
   const handleSubmit = () => {
+    setIsSubmitting(true);
     // Check for empty fields
     let hasEmptyField = false;
     formFields.forEach((field) => {
       if (!field.value) {
         hasEmptyField = true;
         alert(`Please enter a value for ${field.label}`);
+        setIsSubmitting(false);
       }
     });
 
@@ -45,18 +53,22 @@ export const RateFormComponent = () => {
 
       if (!emailValue || !/.+@.+/.test(emailValue)) {
         alert('Invalid Email format. Please enter a valid email address');
+        setIsSubmitting(false);
         return;
       }
     } else {
+      //setIsSubmitting(false);
       return;
     }
-    // console.log('Form submitted:', formFields);
+
+
+   // console.log('Form submitted:', formFields);
     const filteredFormFields = formFields.filter((field) => field.hasOwnProperty('id'));
-    //console.log(filteredFormFields)
+   // console.log(filteredFormFields)
     //# Create a list of values for Q1-Q20
     const answerValues = filteredFormFields.map((field) => Number(field.value));
-    console.log(answerValues)
-    console.log('length', answerValues.length)
+   // console.log(answerValues)
+   // console.log('length', answerValues.length)
 
     // Calculate the sum of the values
     const sumOfValues = answerValues.reduce((sum, value) => {
@@ -70,7 +82,7 @@ export const RateFormComponent = () => {
     const average = sumOfValues / answerValues.length;
 
     // Print the average
-    console.log("Average of values:", average);
+   // console.log("Average of values:", average);
 
     const roundUpToDecimal = (number, decimalPlaces = 1) => {
       const factor = Math.pow(10, decimalPlaces);
@@ -80,13 +92,93 @@ export const RateFormComponent = () => {
     console.log('rounded up', roundUpToDecimal(average, 1))
     const roundedUpScore = roundUpToDecimal(average, 1)
     dispatch(setScore(roundedUpScore))
-    navigation.navigate('Score')
 
+    // Extract Q1 to Q20 values
+   const q1Value = formFields.find((field) => field.id === 'Q1').value;
+   const q2Value = formFields.find((field) => field.id === 'Q2').value;
+   const q3Value = formFields.find((field) => field.id === 'Q3').value;
+   const q4Value = formFields.find((field) => field.id === 'Q4').value;
+   const q5Value = formFields.find((field) => field.id === 'Q5').value;
+   const q6Value = formFields.find((field) => field.id === 'Q6').value;
+   const q7Value = formFields.find((field) => field.id === 'Q7').value;
+   const q8Value = formFields.find((field) => field.id === 'Q8').value;
+   const q9Value = formFields.find((field) => field.id === 'Q9').value;
+   const q10Value = formFields.find((field) => field.id === 'Q10').value;
+   const q11Value = formFields.find((field) => field.id === 'Q11').value;
+   const q12Value = formFields.find((field) => field.id === 'Q12').value;
+   const q13Value = formFields.find((field) => field.id === 'Q13').value;
+   const q14Value = formFields.find((field) => field.id === 'Q14').value;
+   const q15Value = formFields.find((field) => field.id === 'Q15').value;
+   const q16Value = formFields.find((field) => field.id === 'Q16').value;
+   const q17Value = formFields.find((field) => field.id === 'Q17').value;
+   const q18Value = formFields.find((field) => field.id === 'Q18').value;
+   const q19Value = formFields.find((field) => field.id === 'Q19').value;
+   const q20Value = formFields.find((field) => field.id === 'Q20').value;
 
+    // Create the data array to send to the backend
+  const data = {
+    comname: formFields.find((field) => field.ids === '1').value,
+    yourfunction: formFields.find((field) => field.ids === '2').value,
+    secofact: formFields.find((field) => field.ids === '3').value,
+    country: formFields.find((field) => field.ids === '4').value,
+    Company_size: formFields.find((field) => field.ids === '5').value,
+    email: formFields.find((field) => field.ids === '6').value,
+    score: roundedUpScore,
+    q1: q1Value,
+    q2: q2Value,
+    q3: q3Value,
+    q4: q4Value,
+    q5: q5Value,
+    q6: q6Value,
+    q7: q7Value,
+    q8: q8Value,
+    q9: q9Value,
+    q10: q10Value,
+    q11: q11Value,
+    q12: q12Value,
+    q13: q13Value,
+    q14: q14Value,
+    q15: q15Value,
+    q16: q16Value,
+    q17: q17Value,
+    q18: q18Value,
+    q19: q19Value,
+    q20: q20Value,
+  };
 
+  console.log('data', data)
+   
 
+    
+    // Clear form fields before navigating to score screen
+    setFormFields(formFields.map((field) => ({ ...field, value: '' })));
+
+    handleSubmissionComplete(data);
 
   };
+
+  const handleSubmissionComplete = (data) => {
+    setIsSubmitting(false);
+
+    //submit form fields to database
+    // fetch('', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log('Data sent successfully!');
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error sending data:', error);
+    //   });
+
+
+    navigation.navigate('Score')
+  }
 
 
   return (
@@ -164,8 +256,16 @@ export const RateFormComponent = () => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-            <Text style={{ color: 'white', ...FONTS.h3 }}>Submit</Text>
+          <TouchableOpacity
+            style={{ ...styles.submitButton, opacity: isSubmitting ? 0.5 : 1 }}
+            onPress={handleSubmit}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <Text style={{ color: 'white', ...FONTS.h3 }}>Submit</Text>
+            )}
           </TouchableOpacity>
         </View>
 

@@ -1,25 +1,28 @@
 export const rateFields = [
-    {
+    {ids:'1',
         label: 'Organization Name',
         type: 'text',
         value: '',
       },
-      {
+      {ids:'2',
         label: 'Your Function',
         type: 'text',
         value: '',
       },
       {
+        ids:'3',
         label: 'Sector of Activity',
         type: 'text',
         value: '',
       },
       {
+        ids:'4',
         label: 'Country',
         type: 'text',
         value: '',
       },
       {
+        ids:'5',
         label: 'Organization Size',
         type: 'radio',
         value: '',
@@ -43,6 +46,7 @@ export const rateFields = [
         ],
       },
       {
+        ids:'6',
         label: 'Email',
         type: 'text',
         value: '',
