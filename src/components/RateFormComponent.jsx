@@ -186,10 +186,6 @@ export const RateFormComponent = () => {
       <View>
         <View style={{ paddingBottom: SIZES.padding * 2 }}>
           <Text style={{ ...FONTS.body1, fontWeight: '100', lineHeight: 25, paddingBottom: SIZES.padding * 0.5 }}>
-            Self-assess how socially responsible has been the Leadership of YOUR organization
-            and/or YOUR ESG.
-          </Text>
-          <Text style={{ ...FONTS.body1, fontWeight: '100', lineHeight: 25, paddingBottom: SIZES.padding * 0.5 }}>
             Applies to organizations in public, private and NGO sectors.
           </Text>
           <Text style={{ ...FONTS.body1, fontWeight: '100', lineHeight: 25, paddingBottom: SIZES.padding * 0.5 }}>

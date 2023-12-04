@@ -21,7 +21,7 @@ export const OnboardingScreen = () => {
       <LinearGradient colors={['#0390f5', '#1c53b3']} style={styles.linearGradient}>
         <View style={styles.container}>
           <Image source={require('../assets/images/csr.png')} resizeMode='contain' style={{ alignSelf: 'center', width: SIZES.width * 0.8, }} />
-          <Text style={{ color: '#fff', fontSize: 31, lineHeight: 40, paddingBottom: 16 }}>Assess your CSR/Sustainability </Text>
+          <Text style={{ color: '#fff', fontSize: 31, lineHeight: 40, paddingBottom: 16 }}>Assess Your CSR/Sustainability </Text>
           <Text style={{ color: '#fff', fontSize: 18, fontWeight: '200', lineHeight: 28, paddingBottom: 36 }}>Helping organizations measure and improve their CSR/Sustainability</Text>
           <View
             style={{
@@ -32,7 +32,7 @@ export const OnboardingScreen = () => {
           >
             <TouchableOpacity
               style={{
-                backgroundColor: '#6cdeea',
+                backgroundColor: '#3ba5c4',
                 padding: SIZES.padding * 2,
                 flex: 1,
                 flexDirection: 'row',
@@ -41,10 +41,10 @@ export const OnboardingScreen = () => {
               }}
               onPress={()=>handleDone()}
             >
-              <Text style={{ color:'#021e47',fontSize: 18, lineHeight: 25 }}>Get Started</Text>
+              <Text style={{ color:'#fff',fontSize: 18, lineHeight: 25 }}>Get Started</Text>
               <View
               >
-                <Image source={icons.rightArrow} resizeMode='contain' style={{ tintColor:'#021e47',width: 24, height: 24, }} />
+                <Image source={icons.rightArrow} resizeMode='contain' style={{ tintColor:'#fff',width: 24, height: 24, }} />
               </View>
             </TouchableOpacity>
           </View>
