@@ -1,4 +1,4 @@
-package com.csr;
+package com.csr.rating;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

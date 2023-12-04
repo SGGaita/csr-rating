@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "CSR.app"
-               BlueprintName = "CSR"
-               ReferencedContainer = "container:CSR.xcodeproj">
+               BuildableName = "CSRRating.app"
+               BlueprintName = "CSRRating"
+               ReferencedContainer = "container:CSRRating.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "CSRTests.xctest"
-               BlueprintName = "CSRTests"
-               ReferencedContainer = "container:CSR.xcodeproj">
+               BuildableName = "CSRRatingTests.xctest"
+               BlueprintName = "CSRRatingTests"
+               ReferencedContainer = "container:CSRRating.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "CSR.app"
-            BlueprintName = "CSR"
-            ReferencedContainer = "container:CSR.xcodeproj">
+            BuildableName = "CSRRating.app"
+            BlueprintName = "CSRRating"
+            ReferencedContainer = "container:CSRRating.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "CSR.app"
-            BlueprintName = "CSR"
-            ReferencedContainer = "container:CSR.xcodeproj">
+            BuildableName = "CSRRating.app"
+            BlueprintName = "CSRRating"
+            ReferencedContainer = "container:CSRRating.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
