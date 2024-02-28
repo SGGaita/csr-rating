@@ -84,7 +84,7 @@ export const AboutScreen = () => {
 
         </View>
 
-        <View style={styles.itemContainer}>
+        {/* <View style={styles.itemContainer}>
           <Image source={icons.share} resizeMode='contain' style={{ width: 30, height: 30 }} />
           <View style={{ marginLeft: 20 }}>
             <TouchableOpacity
@@ -116,9 +116,9 @@ export const AboutScreen = () => {
             </TouchableOpacity>
           </View>
 
-        </View>
+        </View> */}
 
-        <View style={styles.itemContainer}>
+        {/* <View style={styles.itemContainer}>
           <Image source={icons.licence} resizeMode='contain' style={{ tintColor: 'black', width: 30, height: 30 }} />
           <View style={{ marginLeft: 20 }}>
             <Text style={{ ...FONTS.h3 }}>
@@ -129,7 +129,7 @@ export const AboutScreen = () => {
             </Text>
           </View>
 
-        </View>
+        </View> */}
 
         <View style={styles.itemContainer}>
           <Image source={icons.contact} resizeMode='contain' style={{ width: 30, height: 30 }} />

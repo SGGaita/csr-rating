@@ -32,6 +32,7 @@ export const OnboardingScreen = () => {
           >
             <TouchableOpacity
               style={{
+                
                 backgroundColor: '#3ba5c4',
                 padding: SIZES.padding * 2,
                 flex: 1,
