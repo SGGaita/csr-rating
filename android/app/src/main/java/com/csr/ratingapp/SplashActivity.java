@@ -1,4 +1,4 @@
-package com.csr.rating; // ← Make sure that is your package name
+package com.csr.ratingapp; // ← Make sure that is your package name
 
 import android.content.Intent;
 import android.os.Bundle;

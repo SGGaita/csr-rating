@@ -1,4 +1,4 @@
-package com.csr.rating;
+package com.csr.ratingapp;
 
 import org.devio.rn.splashscreen.SplashScreen; // Add this here
 import android.os.Bundle;
