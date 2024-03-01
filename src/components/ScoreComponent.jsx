@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { BackHandler, StyleSheet, Text, View } from 'react-native'
+import React, {useEffect} from 'react'
 import { FONTS, SIZES } from '../constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectScore } from '../redux/rateSlice'
+import { useNavigation } from '@react-navigation/native';
 
 
 const ScoreComponent = () => {
     const score = useSelector(selectScore)
+    const navigation = useNavigation()
    
 
 
@@ -58,6 +60,21 @@ const ScoreComponent = () => {
             description: 'A model company!'
         }
     ]
+
+    const backActionHandler = () => {
+        // Handle back button press logic here (e.g., navigate back, show confirmation)
+        navigation.navigate('Rate your company');
+        return true; // Consumes the back press event
+      };
+    
+      useEffect(() => {
+        const backHandlerSubscription = BackHandler.addEventListener(
+          'hardwareBackPress',
+          backActionHandler
+        );
+    
+        return () => backHandlerSubscription.remove();
+      }, []);
 
     return (
         <View style={styles.container} >

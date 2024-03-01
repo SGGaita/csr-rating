@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, ActivityIndicator } from 'react-native';
+import {BackHandler, StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, ActivityIndicator } from 'react-native';
 import { FONTS, SIZES } from '../constants';
 import { RadioButton } from 'react-native-paper';
 import { rateFields } from '../utils/rateFormFields';
@@ -14,6 +14,28 @@ export const RateFormComponent = () => {
 
   const dispatch = useDispatch()
   const navigation = useNavigation()
+
+  const [exitApp, setExitApp] = useState(false);
+
+  const backActionHandler = () => {
+    if (exitApp) {
+      BackHandler.exitApp(); // Exit the app on second back press
+    } else {
+      setExitApp(true); // Set flag true for second back press
+      setTimeout(() => setExitApp(false), 2000); // Reset flag after 2 seconds
+    }
+    return true; // Consume the back press event
+  };
+
+  useEffect(() => {
+    const backHandlerSubscription = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backActionHandler
+    );
+
+    return () => backHandlerSubscription.remove();
+  }, []);
+  
 
   useEffect(() => {
     setIsSubmitting(false)
@@ -158,26 +180,41 @@ export const RateFormComponent = () => {
   };
 
   const handleSubmissionComplete = (data) => {
-    setIsSubmitting(false);
+    setIsSubmitting(true);
 
     //submit form fields to database
-    // fetch('', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log('Data sent successfully!');
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error sending data:', error);
-    //   });
+     fetch('https://csrfi.com/submit_data_csr.php', {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json',
+      },
+       body: JSON.stringify(data),
+     })
+     .then((response) => {
+      if (response.ok) {
+        // Successful response
+        console.log('Data sent successfully!');
+        // Display success message to user (e.g., using Toast or Alert)
+       // Alert.alert('Success!', 'Your data has been submitted successfully.');
+        // You can also navigate to the score screen here if desired
+        setIsSubmitting(false);
+        navigation.navigate('Score');
+      } else {
+        // Handle error response
+        console.error('Error:', response.status);
+        response.text().then((text) => console.error(text));
+        // Display error message to user (e.g., using Toast or Alert)
+        //Alert.alert('Error', 'An error occurred while submitting data. Please try again later.');
+      }
+    })
+    .catch((error) => {
+      console.error('Error sending data:', error);
+      // Display error message to user (e.g., using Toast or Alert)
+      //Alert.alert('Error', 'An error occurred while submitting data. Please try again later.');
+    });
 
 
-    navigation.navigate('Score')
+    
   }
 
 

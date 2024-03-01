@@ -4,11 +4,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const connection = mysql.createConnection({
-    host: 'csrfi.com',
-    user: 'csrmainweb_admin',
-    password: 'n5@C2kO5I@@',
+    host: "csrfi.com",
+    user: "csrmainweb_admin",
+    password: "n5@C2kO5I@@",
     port: 3306,
-    database: 'csrmainweb',
+    database: "csrmainweb",
 });
 
 connection.connect(function (err) {
