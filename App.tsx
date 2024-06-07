@@ -1,24 +1,19 @@
 
 import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
-import { OnboardingScreen, HomeScreen, AboutScreen } from './src/screens';
+import { OnboardingScreen, HomeScreen, AboutScreen, LibrariesScreen, PrivacyPolicyScreen } from './src/screens';
 import { NavigationContainer } from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
 import { DrawerContent } from './src/components/DrawerContent';
-import MediaScreen from './src/screens/MediaScreen';
-import HopkinsModelScreen from './src/screens/HopkinsModelScreen';
-import { Image, TouchableOpacity,Text } from 'react-native';
+import { Image, } from 'react-native';
 import { icons, FONTS } from './src/constants';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
 import RateScoreScreen from './src/screens/RateScoreScreen';
-import { useNavigation } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
-const Stack = createStackNavigator();
+
 
 
 const App = () => {
@@ -34,7 +29,7 @@ const App = () => {
         screenOptions={{
           drawerActiveBackgroundColor: '#1c53b3'
         }}
-        initialRouteName='Onboarding'>
+        initialRouteName='Privacy'>
         <Drawer.Screen name="Onboarding" options={{ headerShown: false, swipeEnabled: false, drawerItemStyle: { height: 0 } }} component={OnboardingScreen} />
         <Drawer.Screen name="Rate your company" component={HomeScreen}
           options={{
@@ -60,30 +55,10 @@ const App = () => {
           }}
 
         />
-        {/* <Drawer.Screen name="Media" component={MediaScreen}
-          options={{
-
-            drawerIcon: () => (<Image
-              source={icons.media}
-              resizeMode='contain'
-              style={{ tintColor: '#fff', width: 20, height: 20 }}
-            />),
-            title: "Media and Publication",
-            drawerLabelStyle: { color: 'white', ...FONTS.h4 }
-          }}
-        />
-        <Drawer.Screen name="Model" component={HopkinsModelScreen}
-          options={{
-            drawerIcon: () => (<Image
-              source={icons.model}
-              resizeMode='contain'
-              style={{ tintColor: '#fff', width: 20, height: 20 }}
-            />),
-            title: "Hopkins Model",
-            drawerLabelStyle: { color: 'white', ...FONTS.h4 }
-          }}
-        /> */}
+      
+      <Drawer.Screen name="Privacy" options={{headerShown:false}}  component={PrivacyPolicyScreen} />
         <Drawer.Screen name="About" options={{ drawerItemStyle: { height: 0 } }} component={AboutScreen} />
+        <Drawer.Screen name="Attribution" options={{title:'Licences and Attribution', drawerItemStyle: { height: 0 } }} component={LibrariesScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   </Provider>

@@ -18,12 +18,12 @@ export const DrawerContent = (props) => {
 
     const handleCancel = () => {
         setIsVisible(false);
-      };
-    
-      const handleAccept = () => {
+    };
+
+    const handleAccept = () => {
         // Logout the user here
         setIsVisible(false);
-      };
+    };
 
     const shareLink = async () => {
         await Share.share({
@@ -49,46 +49,46 @@ export const DrawerContent = (props) => {
 
     const navigation = useNavigation();
 
-    const logoutModal = ()=>{
-        return(
+    const logoutModal = () => {
+        return (
 
             <Modal
-      visible={isVisible}
-      animationType="slide"
-      onRequestClose={handleCancel}
-    >
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Are you sure you want to log out?</Text>
-        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-          <Button title="Cancel" onPress={handleCancel} />
-          <Button title="Accept" onPress={handleAccept} />
-        </View>
-      </View>
-    </Modal>
+                visible={isVisible}
+                animationType="slide"
+                onRequestClose={handleCancel}
+            >
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                    <Text>Are you sure you want to log out?</Text>
+                    <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+                        <Button title="Cancel" onPress={handleCancel} />
+                        <Button title="Accept" onPress={handleAccept} />
+                    </View>
+                </View>
+            </Modal>
         )
-        
-    } 
+
+    }
 
 
     return (
-        <View style={{ flex: 1, backgroundColor:'#1c53b3' }}>
+        <View style={{ flex: 1, backgroundColor: '#1c53b3' }}>
             <DrawerContentScrollView {...props}>
                 <View style={styles.drawerContent}>
                     <View style={styles.logoContainer}>
                         <View>
-                            <Image source={logo} resizeMode='contain'  />
+                            <Image source={logo} resizeMode='contain' />
                         </View>
                     </View>
                     <LinearGradient colors={['#0390f5', '#1c53b3']} style={styles.linearGradient}>
-                    <View style={{padding:15}}>
-                            <Text style={{color:'white', ...FONTS.h3}}>General</Text>
+                        <View style={{ padding: 15 }}>
+                            <Text style={{ color: 'white', ...FONTS.h3 }}>General</Text>
                         </View>
                         <DrawerItemList {...props} />
-                    <View style={styles.drawerSection}  >
-                        <View style={{padding:15}}>
-                            <Text style={{color:'white', ...FONTS.h3}}>Tools</Text>
-                        </View>
-                         {/* <DrawerItem
+                        <View style={styles.drawerSection}  >
+                            <View style={{ paddingVer: 15 }}>
+                                <Text style={{ color: 'white', ...FONTS.h3 }}>Tools</Text>
+                            </View>
+                            {/* <DrawerItem
                             icon={(color, size) => (
                                 <Image
                                     source={icons.settings}
@@ -112,7 +112,7 @@ export const DrawerContent = (props) => {
                             onPress={() => { }}
                         /> */}
 
-                        <DrawerItem
+                            {/* <DrawerItem
                             icon={(color, size) => (
                                 <Image
                                     source={icons.share}
@@ -122,22 +122,35 @@ export const DrawerContent = (props) => {
                             )}
                             label={({ focused, color }) => <Text style={{ color:'white' ,...FONTS.h4 }}>Share</Text>}
                             onPress={shareLink}
-                        />
-                         <DrawerItem
-                            icon={(color, size) => (
-                                <Image
-                                    source={icons.info}
-                                    resizeMode='contain'
-                                    style={{ tintColor: '#fff', width: 20, height: 20 }}
-                                />
-                            )}
-                            label={({ focused, color }) => <Text style={{ color:'white' ,...FONTS.h4 }}>About</Text>}
-                            onPress={() => { navigation.navigate('About')}}
-                        />
+                        /> */}
+<DrawerItem
+                                icon={(color, size) => (
+                                    <Image
+                                        source={icons.info}
+                                        resizeMode='contain'
+                                        style={{ tintColor: '#fff', width: 20, height: 20 }}
+                                    />
+                                )}
+                                label={({ focused, color }) => <Text style={{ color: 'white', ...FONTS.h4 }}>Data & Privacy Policy</Text>}
+                                onPress={() => { navigation.navigate('Privacy') }}
+                            />
+
+
+                            <DrawerItem
+                                icon={(color, size) => (
+                                    <Image
+                                        source={icons.info}
+                                        resizeMode='contain'
+                                        style={{ tintColor: '#fff', width: 20, height: 20 }}
+                                    />
+                                )}
+                                label={({ focused, color }) => <Text style={{ color: 'white', ...FONTS.h4 }}>About</Text>}
+                                onPress={() => { navigation.navigate('About') }}
+                            />
 
 
 
-                    </View>
+                        </View>
                     </LinearGradient>
 
                 </View>
@@ -149,20 +162,22 @@ export const DrawerContent = (props) => {
 
             >
 
-               <TouchableOpacity
-               onPress={backAction} 
-               style={{backgroundColor:'#3ba5c4', 
-               margin:10, 
-               paddingVertical:15,
-               elevation:2,
-               borderRadius:5, 
-               flexDirection:'row', 
-               alignItems:'center', 
-               justifyContent:'center'}}
-               >
-                <Image resizeMode='contain' style={{tintColor:'#fff',width:20, height: 20, paddingHorizontal:20 }} source={icons.exit}/>
-                <Text style={{...FONTS.h3, color:'#fff'}}>Sign Out</Text>
-               </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={backAction}
+                    style={{
+                        backgroundColor: '#3ba5c4',
+                        margin: 10,
+                        paddingVertical: 15,
+                        elevation: 2,
+                        borderRadius: 5,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                >
+                    <Image resizeMode='contain' style={{ tintColor: '#fff', width: 20, height: 20, paddingHorizontal: 20 }} source={icons.exit} />
+                    <Text style={{ ...FONTS.h3, color: '#fff' }}>Sign Out</Text>
+                </TouchableOpacity>
             </View>
 
         </View>
@@ -183,8 +198,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         paddingBottom: 15,
         paddingTop: 15,
-        backgroundColor:'white'
-        
+        backgroundColor: 'white'
+
     }
     ,
     row: {
@@ -204,17 +219,17 @@ const styles = StyleSheet.create({
     drawerSection: {
         borderBottomColor: '#fff',
         borderBottomWidth: 0.5,
-        
+
     },
-   
+
     drawerItemTitle: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#333',
-      },
+    },
 
     bottomDrawerSection: {
-       
+
         marginBottom: 15,
         borderTopColor: '#f4f4f4',
         borderTopWidth: 0.5

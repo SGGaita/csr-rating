@@ -2,11 +2,13 @@ import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, Linking, S
 import React, { useState } from 'react'
 import { COLORS, FONTS, icons, images } from '../constants'
 import logo from '../constants/images'
+import { useNavigation } from '@react-navigation/native'
 
 export const AboutScreen = () => {
   const [url, setUrl] = useState('https://play.google.com/store/apps/details?id=com.csrfi.csr.csr');
   const [email, setEmail] = useState('admin@mhciternational.com');
   const [telephone, setTel] = useState('+61 89647 2156');
+  const navigation = useNavigation()
 
 
   const shareLink = async () => {
@@ -42,13 +44,16 @@ export const AboutScreen = () => {
         // Open the LinkedIn page
         shareLink()
         break;
-        case 'telephone':
-          // Open the LinkedIn page
-          Linking.openURL(`tel:${telephone}`)
-          break;
+      case 'telephone':
+        // Open the LinkedIn page
+        Linking.openURL(`tel:${telephone}`)
+        break;
       case 'email':
         // Open the LinkedIn page
         Linking.openURL(`mailto:${email}`)
+        break;
+        case 'attribution':
+          navigation.navigate('Attribution')
         break;
       default:
         // Handle unknown social media items
@@ -62,7 +67,7 @@ export const AboutScreen = () => {
     <View style={styles.container}>
 
       <View style={styles.logoContainer}>
-        <Image source={logo} resizeMode='contain' style={{ width: 120, height: 80 }} />
+        <Image source={logo} resizeMode='contain' style={{ width: 240, height: 160 }} />
       </View>
 
       <ScrollView style={styles.textContainer}>
@@ -118,27 +123,32 @@ export const AboutScreen = () => {
 
         </View> */}
 
-        {/* <View style={styles.itemContainer}>
+        <View style={styles.itemContainer}>
           <Image source={icons.licence} resizeMode='contain' style={{ tintColor: 'black', width: 30, height: 30 }} />
           <View style={{ marginLeft: 20 }}>
-            <Text style={{ ...FONTS.h3 }}>
-              Open source libraries/licenses
-            </Text>
-            <Text style={{ ...FONTS.body2, color: 'grey', lineHeight: 18, marginTop: 5 }}>
-              Attribution is the key to sharing.
-            </Text>
+            <TouchableOpacity
+              onPress={() => handleSocial('attribution')}
+            >
+              <Text style={{ ...FONTS.h3 }}>
+                Open source libraries/licenses
+              </Text>
+              <Text style={{ ...FONTS.body2, color: 'grey', lineHeight: 18, marginTop: 5 }}>
+                Attribution is the key to sharing.
+              </Text>
+            </TouchableOpacity>
+
           </View>
 
-        </View> */}
+        </View>
 
-        <View style={styles.itemContainer}>
+        {/* <View style={styles.itemContainer}>
           <Image source={icons.contact} resizeMode='contain' style={{ width: 30, height: 30 }} />
           <View style={{ marginLeft: 20 }}>
             <Text style={{ ...FONTS.h3 }}>
               Contact us
             </Text>
             <View style={{ marginTop: 2 }}>
-             
+
               <View style={{ flexDirection: 'row' }}>
                 <Text style={{ ...FONTS.h4 }}>Email:</Text>
                 <TouchableOpacity
@@ -149,18 +159,18 @@ export const AboutScreen = () => {
                 </TouchableOpacity>
 
               </View>
-              <View style={{ flexDirection: 'row' }}>
+              {/* <View style={{ flexDirection: 'row' }}>
                 <Text style={{ ...FONTS.h4 }}>Website:</Text>
                 <TouchableOpacity
                   onPress={() => handleSocial('email')}
                 >
-                <Text style={{ ...FONTS.h4, color: 'grey' }}> www.csrfi.com</Text>
+                  <Text style={{ ...FONTS.h4, color: 'grey' }}> www.csrfi.com</Text>
                 </TouchableOpacity>
-              </View>
+              </View> 
             </View>
           </View>
 
-        </View>
+        </View> */}
 
         <View style={styles.itemContainer}>
           <Image source={icons.social} resizeMode='contain' style={{ width: 30, height: 30 }} />
@@ -191,7 +201,7 @@ export const AboutScreen = () => {
 
 
 
-        <View style={{ alignSelf: 'center', alignItems: 'center', marginBottom: 15 }}>
+        <View style={{ justifyContent:'flex-end', alignItems: 'center' }}>
           <Text style={{ ...FONTS.body3 }}>Version 1.0.0</Text>
           <Text style={{ ...FONTS.h4 }}> All Rights Reserved</Text>
         </View>
@@ -211,9 +221,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 5,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    flex:1,
   },
   textContainer: {
+    
     paddingVertical: 15,
     paddingHorizontal: 20
   },
