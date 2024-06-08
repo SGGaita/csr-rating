@@ -1,4 +1,4 @@
-package com.csr;
+package com.csr.mhci;
 
 import org.devio.rn.splashscreen.SplashScreen; // Add this here
 import android.os.Bundle;
@@ -22,7 +22,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "CSR Rating";
+    return "MHCi CSR";
   }
 
   /**

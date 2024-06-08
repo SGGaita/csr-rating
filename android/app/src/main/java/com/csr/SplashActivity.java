@@ -1,4 +1,4 @@
-package com.csr; // ← Make sure that is your package name
+package com.csr.mhci; // ← Make sure that is your package name
 
 import android.content.Intent;
 import android.os.Bundle;

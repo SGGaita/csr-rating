@@ -1,53 +1,90 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView } from 'react-native'
-import React from 'react'
-import { COLORS, FONTS, SIZES, icons } from '../constants'
-import Onboarding from 'react-native-onboarding-swiper';
+import React, { useState, useEffect } from 'react'
+import {  SIZES, icons } from '../constants'
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import { addEventListener } from '@react-native-community/netinfo';
+import { ConnectionError } from '../components';
 
 export const OnboardingScreen = () => {
 
   const navigation = useNavigation();
+  const [isConnected, setIsConnected] = useState(false);
+  const [showError, setShowError] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = addEventListener(state => {
+      setIsConnected(state.isConnected);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleDone = () => {
-    navigation.navigate('Rate your company');
-  }
-
-  const doneButton = ({ ...props }) => {
-    return (
-      <TouchableOpacity style={styles.doneButton} {...props}>
-        <Text style={{ fontSize: 16, color: COLORS.primary }}>Home</Text>
-        <Image source={icons.rightArrow} resizeMode='contain' style={{ marginLeft: 5, width: 25, height: 20, tintColor: "black" }} />
-      </TouchableOpacity>
-    )
+    if (isConnected) {
+      navigation.navigate('Rate your company');
+    } else {
+      setShowError(true);
+    }
   }
 
   
 
+  const handleCancelError = () => {
+    setShowError(false);
+  }
+
+
+
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <LinearGradient colors={['#0390f5', '#1c53b3']} style={styles.linearGradient}>
+      {showError && (
+            <ConnectionError style={styles.error}  onPressCancel={handleCancelError} />
+          )}
+      <LinearGradient colors={['#ffffff','#1c53b3']} style={styles.linearGradient}>
         <View style={styles.container}>
-          <Onboarding
-            onDone={handleDone}
-            onSkip={handleDone}
-           // DoneButtonComponent={doneButton}
-            
-            bottomBarHighlight={false}
-            containerStyles={{ padding: SIZES.padding * 2 }}
-            titleStyles={{ ...FONTS.h1,}}
-            subTitleStyles={{ ...FONTS.body1, marginTop: 10 }}
+          {/* ... other content */}
+          
+          <Image source={require('../assets/images/logo.png')} resizeMode='contain' style={{ flex:1,alignSelf: 'center', width: SIZES.width * 0.5, }} />
+          <View style={{flex:1, flexDirection:"column", position:'relative',}}>
+          <View style={{flex:2, flexDirection:'column', justifyContent:'flex-end'}}>
+          <Text style={{ color: '#fff', fontWeight:'600',fontSize: 40, lineHeight: 40, paddingBottom: 16 }}>Assess Your CSR/Sustainability </Text>
+          <Text style={{ color: '#fff', fontSize: 18, fontWeight: '200', lineHeight: 28, paddingBottom: 36 }}>Helping organizations measure and improve their CSR/Sustainability</Text>
+          </View>
+          
+          <View
+            style={{
+              flexDirection: 'row',
+              marginVertical: SIZES.padding * 1,
 
-            pages={[
-              {
-                backgroundColor: 'transparent',
-                image: <Image source={require('../assets/images/csr.png')} resizeMode='contain' style={{ width: SIZES.width * 0.8 ,height: SIZES.height * 0.8}} />,
-                title: `Assess your CSR/Sustainability`,
-               subtitle: 'Helping organizations measure and improve their CSR/Sustainability',
-              },
+            }}
+          >
+            <TouchableOpacity
+              style={{
+flex:1,
+                backgroundColor: '#329fbf',
+                padding: SIZES.padding * 2,
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                borderRadius: 30,
+                width:'100%',
+                elevation:1,
+              }}
+              onPress={() => handleDone()}
+            >
+              <Text style={{ color: '#fff', fontSize: 18, lineHeight: 25 }}>Get Started</Text>
+              <View
+              >
+                <Image source={icons.rightArrow} resizeMode='contain' style={{ tintColor: '#fff', width: 24, height: 24, }} />
+              </View>
+            </TouchableOpacity>
+          </View>
+          </View>
+         
 
-            ]}
-          />
+
         </View>
 
       </LinearGradient>
@@ -59,16 +96,22 @@ export const OnboardingScreen = () => {
 
 const styles = StyleSheet.create({
   safeAreaView: {
-    flex: 1
-    
+    flex: 1,
+    position: 'relative',
+    zIndex: 2
   },
+
   linearGradient: {
     flex: 1,
+    padding: SIZES.padding * 1
   },
   container: {
     flex: 1,
+    flexDirection: 'column',
+    //alignItems: 'center',
+    // justifyContent:'center'
     // backgroundColor:COLORS.secondary,
-     //paddingVertical: SIZES.padding 
+    paddingHorizontal: SIZES.padding
   },
   onboard: {
     padding: SIZES.padding * 2
